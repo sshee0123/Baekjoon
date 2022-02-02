@@ -7,6 +7,10 @@ for _ in range(M):
     graph[m1].append(m2)
     graph[m2].append(m1)
 
+#정렬 해야하
+for i in range(N+1):
+    graph[i].sort()
+
 visited = [False]*(N+1)
 
 def dfs(graph,v,visited):
