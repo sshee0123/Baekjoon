@@ -6,3 +6,6 @@ for c in coins:
     cnt+=money//c
     money%=c
 print(cnt)
+
+
+
