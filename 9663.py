@@ -8,7 +8,7 @@ def possible(x):
         #행 돌면서
         #상하좌우 or 대각선에 퀸이 있다면 False 반환
         #여기서 대각선은 행-행 = 열-열
-        if chess[i] == chess[x] or abs(chess[x]-chess[i]) == abs(x-i):
+        if chess[x] == chess[i] or abs(chess[x]-chess[i]) == abs(x-i):
             return False
     return True
 
