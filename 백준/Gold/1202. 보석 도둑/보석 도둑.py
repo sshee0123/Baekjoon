@@ -20,6 +20,5 @@ for c in bag:
 
     if take:
         result += (-heapq.heappop(take))
-    elif not q:
-        break
+
 print(result)
