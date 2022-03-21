@@ -1,0 +1,9 @@
+def solution(lottos, win_nums):
+    ranking = [6, 6, 5, 4, 3, 2, 1] # 순위가 인덱스인 일치하는 개수 배열
+    cnt = 0 # 당첨 개수
+    for i in lottos:
+        if i in win_nums:
+            cnt += 1
+    count0 = lottos.count(0) # 0 의 개수
+
+    return [ranking[cnt+count0], ranking[cnt]]
