@@ -1,9 +1,22 @@
-def solution(lottos, win_nums):
-    ranking = [6, 6, 5, 4, 3, 2, 1] # 순위가 인덱스인 일치하는 개수 배열
-    cnt = 0 # 당첨 개수
-    for i in lottos:
-        if i in win_nums:
-            cnt += 1
-    count0 = lottos.count(0) # 0 의 개수
+# def solution(lottos, win_nums):
+#     ranking = [6, 6, 5, 4, 3, 2, 1] # 순위가 인덱스인 일치하는 개수 배열
+#     cnt = 0 # 당첨 개수
+#     for i in lottos:
+#         if i in win_nums:
+#             cnt += 1
+#     count0 = lottos.count(0) # 0 의 개수
 
-    return [ranking[cnt+count0], ranking[cnt]]
+#     return [ranking[cnt+count0], ranking[cnt
+
+
+def solution(lottos, win_nums):
+    rank = {
+        0: 6,
+        1: 6,
+        2: 5,
+        3: 4,
+        4: 3,
+        5: 2,
+        6: 1
+    }
+    return [ rank[len(set(lottos) & set(win_nums)) + lottos.count(0)], rank[len(set(lottos) & set(win_nums))]]
