@@ -1,0 +1,19 @@
+
+
+def solution(id_list, report, k):
+    answer = [0] * len(id_list)
+    cnt = {id:0 for id in id_list} # id 별 신고된 횟수
+    d = {id:[] for id in id_list} # 이용자 id 가 신고한 id들 딕셔너리
+
+    for repo in set(report):
+        rep = repo.split(' ') # 이용자id와 신고한 id 분리
+        d[rep[0]].append(rep[1]) # 딕셔너리에서 이용자 id 키에 신고한 id들 추가
+        cnt[rep[1]] += 1 # 신고횟수
+
+    # print(d)
+    for key,values in d.items():
+        for val in values:
+            if cnt[val] >= k: # 신고횟수가 k번 이상이면
+                answer[id_list.index(key)] += 1
+    # print(answer)
+    return answer
