@@ -1,0 +1,16 @@
+def solution(board, moves):
+    answer = 0
+    basket = [] # 바구니 스택
+    for move in moves:
+        for i in board:
+            if i[move-1] != 0: # 인형이 있다면
+                basket.append(i[move - 1])  # 바구니에 넣는다.
+                i[move - 1] = 0  # 인형 빼고 빈칸으로 만들어준다.
+                # print("before",basket)
+                if len(basket) > 1:
+                    if basket[-1] == basket[-2]: # 바구니 위에 같은 인형 2개 연속하면
+                        answer += 2
+                        basket.pop() # 연속한 인형 두개 pop()
+                        basket.pop()
+                break
+    return answer
