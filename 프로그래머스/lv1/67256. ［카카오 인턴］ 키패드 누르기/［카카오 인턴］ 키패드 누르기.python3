@@ -1,0 +1,38 @@
+def solution(numbers, hand):
+    answer = ''
+    left_finger = 10 # *
+    right_finger = 12 # #
+    for n in numbers:
+        if n in [1,4,7]:
+            answer += 'L'
+            left_finger = n
+        elif n in [3,6,9]:
+            answer += 'R'
+            right_finger = n
+        else:
+            if n == 0:
+                n = 11
+            left_dis = abs(n-left_finger)
+            right_dis = abs(n-right_finger)
+            left_dis = left_dis//3 + left_dis%3
+            right_dis = right_dis//3 + right_dis%3
+            # print("l",left_dis)
+            # print("r",right_dis)
+            if left_dis == right_dis:
+                if hand == "right":
+                    answer += 'R'
+                    right_finger = n
+                if hand == "left":
+                    answer += 'L'
+                    left_finger = n
+
+            elif left_dis < right_dis:
+                answer += 'L'
+                left_finger = n
+            else:
+                answer += 'R'
+                right_finger = n
+
+
+    # print(answer)
+    return answer
