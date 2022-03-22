@@ -1,0 +1,14 @@
+def solution(s):
+    word = ['zero','one','two','three','four','five','six','seven','eight','nine']
+    answer = ""
+    alp = ""
+    for i in s:
+        if i.isdigit(): # 숫자인지
+            answer += i
+        else:
+            alp += i
+            if alp in word:
+                answer += str(word.index(alp))
+                alp = ""
+                
+    return int(answer)
