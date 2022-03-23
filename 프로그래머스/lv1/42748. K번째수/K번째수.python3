@@ -1,0 +1,10 @@
+def solution(array, commands):
+    answer = []
+    
+    for i,j,k in commands:
+        tmp = []
+        tmp = array[i-1:j]
+        tmp.sort()
+        # print(tmp)
+        answer.append(tmp[k-1])
+    return answer
