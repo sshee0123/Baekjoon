@@ -1,0 +1,16 @@
+def solution(phone_book):
+    answer = True
+    # 전화번호부 해시 생성
+    hashmap = {}
+    for phone_num in phone_book:
+        hashmap[phone_num] = 1
+
+    # 접두사 찾기
+    for phone_num in phone_book:
+        tmp = ''
+        for num in phone_num:
+            tmp += num
+            # 하나씩 입력한 전화번호의 번호가 해쉬맵에 있고 자기 자신 번호가 아닐 때
+            if tmp in hashmap and tmp != phone_num:
+                answer = False
+    return answer
