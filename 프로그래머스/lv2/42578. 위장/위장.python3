@@ -1,0 +1,12 @@
+def solution(clothes):
+    answer = 1
+    clothes_hash = {}
+    for c_name, c_type in clothes:
+        if c_type not in clothes_hash: # 처음 해쉬에 넣는 옷 종류면
+            clothes_hash[c_type] = 2 # 안 입는 경우 까지 더해서 2
+        else:
+            clothes_hash[c_type] += 1
+    
+    for c in clothes_hash.values():
+        answer *= c
+    return answer-1
