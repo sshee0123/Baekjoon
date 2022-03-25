@@ -1,0 +1,23 @@
+def solution(genres, plays):
+    answer = []
+    arr = sorted([[genres[i], plays[i], i] for i in range(len(genres))],key = lambda x:(x[0],-x[1], x[2]))
+
+    # 재생횟수
+    total_play = {}
+    for i in arr:
+        if i[0] not in total_play:
+            total_play[i[0]] = i[1]
+        else:
+            total_play[i[0]] += i[1]
+    total_play = sorted(total_play.items(), key = lambda x:-x[1]) # 재생횟수가 더 많은 타입부터
+
+    for t in total_play: 
+        cnt = 0
+        for i in arr:
+            if t[0] == i[0]: # 재생횟수 많은 노래 타입과 arr의 타입 같다면 
+                cnt += 1
+                if cnt > 2: # 한 장르에 앨범 2개만 실어야해서
+                    break
+                else:
+                    answer.append(i[2]) # 노래의 고유번호 삽입
+    return answer
