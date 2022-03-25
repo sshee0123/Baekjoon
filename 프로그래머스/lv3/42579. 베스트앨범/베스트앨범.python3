@@ -1,23 +1,19 @@
 def solution(genres, plays):
     answer = []
-    arr = sorted([[genres[i], plays[i], i] for i in range(len(genres))],key = lambda x:(x[0],-x[1], x[2]))
-
-    # 재생횟수
-    total_play = {}
-    for i in arr:
-        if i[0] not in total_play:
-            total_play[i[0]] = i[1]
+    dict1 = {}
+    dict2 = {}
+    for i, (g,p) in enumerate(zip(genres,plays)):
+        if g not in dict1:
+            dict1[g] = [(i,p)]
         else:
-            total_play[i[0]] += i[1]
-    total_play = sorted(total_play.items(), key = lambda x:-x[1]) # 재생횟수가 더 많은 타입부터
+            dict1[g].append((i,p))
+        if g not in dict2:
+            dict2[g] = p
+        else:
+            dict2[g] += p
 
-    for t in total_play: 
-        cnt = 0
-        for i in arr:
-            if t[0] == i[0]: # 재생횟수 많은 노래 타입과 arr의 타입 같다면 
-                cnt += 1
-                if cnt > 2: # 한 장르에 앨범 2개만 실어야해서
-                    break
-                else:
-                    answer.append(i[2]) # 노래의 고유번호 삽입
+    for (k,v) in sorted(dict2.items(), key = lambda x:-x[1]): # 많이 재생한 노래 타입 먼저
+        for (i,p) in sorted(dict1[k], key = lambda x:-x[1])[:2]: # 많이 재생한 노래 2개
+            answer.append(i)
+
     return answer
