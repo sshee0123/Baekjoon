@@ -1,2 +1,11 @@
 def solution(s):
-    return int(s)
+    result = 0
+    if s[0] == '-':
+        num = s[1:]
+        result = int(num)*(-1)
+    elif s[0] == '+':
+        num = s[1:]
+        result = int(num)
+    else:
+        result = int(s)
+    return result
