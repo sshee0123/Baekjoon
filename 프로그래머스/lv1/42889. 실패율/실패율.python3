@@ -1,0 +1,14 @@
+def solution(N, stages):
+    answer = {}
+    cntplayer = len(stages)
+    
+    # 각 스테이지별 실패율 딕셔너리에 저장
+    for i in range(1,N+1):
+        if cntplayer != 0:
+            answer[i] = stages.count(i) /cntplayer # 실패율
+            cntplayer -= stages.count(i)
+        else: # 스테이지 도달한 유저 없는 경우 실패율 0
+            answer[i] = 0
+        
+    return sorted(answer,key = lambda x:-answer[x])
+    
