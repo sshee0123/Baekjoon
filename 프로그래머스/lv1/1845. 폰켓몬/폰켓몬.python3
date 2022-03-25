@@ -1,0 +1,11 @@
+
+def solution(nums):
+    answer = 0
+    n = len(nums)//2
+    set_num = list(set(nums))
+    # print(set_num)
+    if n > len(set_num):
+        answer = len(set_num)
+    else:
+        answer = n
+    return answer
