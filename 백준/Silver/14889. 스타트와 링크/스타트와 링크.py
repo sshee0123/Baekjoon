@@ -1,21 +1,18 @@
+# 14889
+import sys
 from itertools import combinations
-
-n= int(input())
-p = [list(map(int,input().split())) for _ in range(n)]
+n = int(sys.stdin.readline())
+arr = [list(map(int,sys.stdin.readline().split())) for _ in range(n)]
 
 members = [i for i in range(n)]
-cases = list(combinations(members,n//2))
-
-min_value = 1e9
+cases = list(combinations(members,n//2)) # 팀 나누는 경우의 수
+min_v = 1e9
 for case in cases:
-    start = 0
-    link = 0
-    for x in case:
-        for y in case:
-            start += p[x][y]
-    other_case = [x for x in range(n) if x not in case]
-    for x in other_case:
-        for y in other_case:
-            link += p[x][y]
-    min_value = min(min_value,abs(start-link))
-print(min_value)
+    c2 = list(set(members)-set(case))
+    start, link = 0,0
+    for i in range(n//2):
+        for j in range(i+1, n//2):
+            start += arr[case[i]][case[j]] + arr[case[j]][case[i]]
+            link += arr[c2[i]][c2[j]] + arr[c2[j]][c2[i]]
+    min_v = min(min_v, abs(start-link))
+print(min_v)
