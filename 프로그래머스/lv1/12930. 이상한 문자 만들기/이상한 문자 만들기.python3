@@ -1,11 +1,11 @@
 def solution(s):
     answer = ''
-    i = 0
+    i = 0 #각 단어 인덱스
     for ch in s:
-        if ch == ' ':
+        if ch == ' ': # 빈칸 체크
             answer += ch
-            i = 0
-        else:
+            i = 0 # 빈칸이면 계속 단어 인덱스 0
+        else: # 빈칸 아니면
             if i%2 == 0:
                 answer += ch.upper()
             else:
