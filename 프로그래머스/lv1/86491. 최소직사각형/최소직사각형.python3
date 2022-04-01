@@ -1,0 +1,6 @@
+def solution(sizes):
+    answer = 0
+    w = max(max(x) for x in sizes)
+    h = max(min(x) for x in sizes)
+    answer = w*h
+    return answer
