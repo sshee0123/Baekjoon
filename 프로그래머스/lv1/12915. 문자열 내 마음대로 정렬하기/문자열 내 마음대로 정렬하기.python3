@@ -1,0 +1,4 @@
+def solution(strings, n):
+    # 인덱스 n의 문자가 같으면 사전순
+    strings = sorted(strings, key = lambda x:(x[n],x))
+    return strings
