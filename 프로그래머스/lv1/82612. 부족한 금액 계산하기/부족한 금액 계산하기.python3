@@ -1,0 +1,11 @@
+def solution(price, money, count):
+    answer = 0
+    p = 0
+    for i in range(1,count+1):
+        p+=price*i # 놀이기구 가격
+        
+    if p-money>0:
+        answer = p-money
+    else:
+        answer = 0
+    return answer
