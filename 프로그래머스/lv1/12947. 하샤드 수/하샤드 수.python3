@@ -1,0 +1,11 @@
+def solution(x):
+    answer = True
+    tmp = 0
+    arr = list(str(x))
+    for i in arr:
+        tmp += int(i)
+    if x%tmp == 0:
+        answer = True
+    else:
+        answer = False
+    return answer
