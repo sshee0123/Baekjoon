@@ -1,15 +1,11 @@
 def solution(s):
     answer = ''
-    i = 0 #각 단어 인덱스
-    for ch in s:
-        if ch == ' ': # 빈칸 체크
-            answer += ch
-            i = 0 # 빈칸이면 계속 단어 인덱스 0
-        else: # 빈칸 아니면
+    for word in s.split(" "):
+        n = ''
+        for i in range(len(word)):
             if i%2 == 0:
-                answer += ch.upper()
+                n += word[i].upper()
             else:
-                answer += ch.lower()
-            i+= 1
-        
-    return answer
+                n += word[i].lower()
+        answer += (n+" ")
+    return answer[:-1]
