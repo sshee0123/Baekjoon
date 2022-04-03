@@ -1,0 +1,9 @@
+def solution(s):
+    answer = True
+    p_c = s.count('p') + s.count('P')
+    s_c = s.count('y') + s.count('Y')
+    if p_c == s_c or (p_c == 0 and s_c == 0):
+        answer = True
+    elif p_c != s_c:
+        answer = False  
+    return answer
