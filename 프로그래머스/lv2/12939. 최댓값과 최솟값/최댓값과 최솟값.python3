@@ -1,0 +1,9 @@
+def solution(s):
+    answer = ''
+    s = list(s.split())
+    arr = []
+    for i in s:
+        arr.append(int(i))
+    answer = str(min(arr))+ " "
+    answer += str(max(arr))
+    return answer
