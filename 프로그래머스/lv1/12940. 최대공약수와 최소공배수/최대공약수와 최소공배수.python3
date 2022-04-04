@@ -1,7 +1,12 @@
-import math
+def gcd(a,b):
+    if a<b:
+        a,b = b,a
+    while b!=0:
+        a,b = b, a%b
+    return a
+
 def solution(n, m):
     answer = []
-    nm_gcd = math.gcd(n,m)
-    answer.append(nm_gcd)
-    answer.append(n*m//nm_gcd)
+    answer.append(gcd(n,m))
+    answer.append(n*m//gcd(n,m))
     return answer
