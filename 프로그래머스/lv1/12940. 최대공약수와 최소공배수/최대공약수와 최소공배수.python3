@@ -1,0 +1,7 @@
+import math
+def solution(n, m):
+    answer = []
+    nm_gcd = int(math.gcd(n,m))
+    answer.append(nm_gcd)
+    answer.append(n*m//nm_gcd)
+    return answer
