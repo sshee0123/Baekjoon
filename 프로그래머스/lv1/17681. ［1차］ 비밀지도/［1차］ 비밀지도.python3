@@ -1,0 +1,39 @@
+def solution(n, arr1, arr2):
+    answer = []
+    tmp1 = []
+    tmp2 = []
+    
+    for i in range(len(arr1)):
+        tmp = ''
+        while True:
+            if arr1[i]==0:
+                while len(tmp)!=n:
+                    tmp+='0'
+                tmp1.append(tmp[::-1])
+                break
+            tmp += str(arr1[i]%2)
+            arr1[i]//=2
+    print(tmp1)
+    
+    for i in range(len(arr2)):
+        tmp = ''
+        while True:
+            if arr2[i]==0:
+                while len(tmp)!=n:
+                    tmp+='0'
+                tmp2.append(tmp[::-1])
+                break
+            tmp += str(arr2[i]%2)
+            arr2[i]//=2
+    print(tmp2)
+    
+    for i in range(n):
+        tmp = ''
+        for j in range(n):
+            if tmp1[i][j] == '1' or tmp2[i][j] == '1':
+                tmp += '#'
+            else:
+                tmp += ' '
+        answer.append(tmp)
+                
+    return answer
