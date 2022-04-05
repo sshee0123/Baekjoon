@@ -1,39 +1,9 @@
 def solution(n, arr1, arr2):
     answer = []
-    tmp1 = []
-    tmp2 = []
-    
-    for i in range(len(arr1)):
-        tmp = ''
-        while True:
-            if arr1[i]==0:
-                while len(tmp)!=n:
-                    tmp+='0'
-                tmp1.append(tmp[::-1])
-                break
-            tmp += str(arr1[i]%2)
-            arr1[i]//=2
-    print(tmp1)
-    
-    for i in range(len(arr2)):
-        tmp = ''
-        while True:
-            if arr2[i]==0:
-                while len(tmp)!=n:
-                    tmp+='0'
-                tmp2.append(tmp[::-1])
-                break
-            tmp += str(arr2[i]%2)
-            arr2[i]//=2
-    print(tmp2)
-    
-    for i in range(n):
-        tmp = ''
-        for j in range(n):
-            if tmp1[i][j] == '1' or tmp2[i][j] == '1':
-                tmp += '#'
-            else:
-                tmp += ' '
-        answer.append(tmp)
-                
+    for i,j in zip(arr1,arr2):
+        arr = str(bin(i|j))[2:] # 둘 중에 하나라도 있으면 (비트 연산..)
+        arr = arr.rjust(n,'0') # 0으로 채워주기
+        arr = arr.replace('1','#')
+        arr = arr.replace('0',' ')
+        answer.append(arr)
     return answer
