@@ -1,27 +1,12 @@
+import re
 def solution(dartResult):
-    n = ''
-    point = []
-    for i in dartResult:
-        if i.isdigit(): # 숫자면 n에 담기
-            n += i
-        if i == 'S': # S면 1제곱
-            n = int(n) **1
-            point.append(n)
-            n = ''
-        elif i == 'D': # D면 2제곱
-            n = int(n) **2
-            point.append(n)
-            n = ''
-        elif i == 'T': # T면 3제곱
-            n = int(n) **3
-            point.append(n)
-            n = ''
-        elif i == '*': # *(스타상)일때
-            if len(point)>1:
-                point[-2] *=2
-                point[-1] *=2
-            else: # 첫 번째 기회일 때
-                point[-1] *=2
-        elif i == '#': # #(아차상)일때
-            point[-1] *=(-1)
-    return sum(point)
+    answer = 0
+    bonus = {"S":1, "D":2, "T":3}
+    option = {"":1, "*":2, "#":-1}
+    p = re.compile('(\d+)([SDT])([*#]?)')
+    dart = p.findall(dartResult)
+    for i in range(len(dart)):
+        if dart[i][2] == '*' and i>0:
+            dart[i-1]*=2
+        dart[i] = int(dart[i][0])**bonus[dart[i][1]]*option[dart[i][2]]
+    return sum(dart)
