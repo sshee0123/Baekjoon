@@ -28,8 +28,10 @@ def bfs(p):
                         visited[nx][ny] = 1 # 방문처리
                         distance[nx][ny] = distance[x][y] + 1 #거리 업데이트
 
-                    elif p[nx][ny] == 'P' and distance[x][y]<=1:   
-                        return 0 # 사람인데 거리가 1이하.. 1더해지면 맨허튼거리 2이하됨. 
+                    elif p[nx][ny] == 'P':
+                        distance[nx][ny] = distance[x][y]+1
+                        if distance[nx][ny]<=2:
+                            return 0
     return 1
                             
         
