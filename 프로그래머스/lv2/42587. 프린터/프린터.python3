@@ -1,0 +1,16 @@
+from collections import deque
+def solution(priorities, location):
+    answer = 0
+    q = deque([v,i] for i,v in enumerate(priorities))
+    print(q)
+    while q:
+        tmp = q.popleft()
+        # q가 남아 있어야 max 값이 있음.
+        if q and tmp[0] < max(q)[0]: # 중요도가 높은 문서가 있다면
+            q.append(tmp)
+        else:
+            # 문서 인쇄
+            answer += 1
+            if tmp[1] == location: # 인쇄한 문서의 초기 인덱스가 요청한 문서면 끝
+                break
+    return answer
