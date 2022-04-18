@@ -1,17 +1,15 @@
 from itertools import combinations
 from collections import Counter
-
 def solution(orders, course):
     answer = []
-    for c in course:
+    for c in course: # 코스마다
         tmp = []
         for order in orders:
             tmp += list(combinations(sorted(order),c))
-            
         counter = Counter(tmp)
         if counter:
             max_cnt = max(counter.values())
-            if max_cnt >= 2:
+            if max_cnt>=2: # 2번 이상 주문된 것만
                 for k,v in counter.items():
                     if counter[k] == max_cnt:
                         answer.append(''.join(k))
