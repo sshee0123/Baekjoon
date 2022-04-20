@@ -1,0 +1,49 @@
+# 데브매칭
+# w를 두 "균형잡힌 괄호 문자열" u, v 로 분리하는 함수
+def divided(w):
+    w_sum = 0
+    for i in range(len(w)):
+        if w[i] == '(':
+            w_sum += 1
+        elif w[i] == ')':
+            w_sum -= 1
+        if w_sum == 0:  # 균형잡힌 괄호 문자열
+            return w[:i + 1], w[i+1:]
+
+
+# "올바른 괄호 문자열" 체크 함수
+def check(arr):
+    stack = []
+    for i in arr:
+        if i == "(":
+            stack.append(i)  # 스택 삽입
+        elif i == ")":  # 스택 pop( 짝 맞추기 비교)
+            if not stack:  # 스택 비어있으면 안맞는거임
+                return False
+            stack.pop()
+    return True
+
+
+def solution(p):
+    if p == "":
+        return p
+    u, v = divided(p)
+    # print(u,v)
+    
+    if check(u):  # 올바른 괄호 문자열이라면
+        return u + solution(v)
+
+    else:  # 올바른 괄호 문자열이 아니라면
+        answer = "("
+        answer += solution(v)
+        answer += ")"
+
+        # tmp = u[1:len(u)-1]
+        # answer += tmp[::-1]
+        for i in range(1,len(u)-1):
+            if u[i] == "(":
+                answer += ")"
+            else:
+                answer += "("
+        
+        return answer
