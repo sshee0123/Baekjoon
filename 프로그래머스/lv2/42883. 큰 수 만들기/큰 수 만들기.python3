@@ -1,0 +1,11 @@
+def solution(number, k):
+    stack = []
+    for num in number:
+        # 다음 넣을 num이 스택에 마지막 수보다 크면 스택에 있는걸 뺀다.
+        while stack and stack[-1] < num and k>0: 
+            k-=1
+            stack.pop()
+        stack.append(num) # num 넣는다.
+    if k>0:
+        stack = stack[:-k]
+    return ''.join(stack)
