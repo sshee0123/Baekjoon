@@ -1,9 +1,6 @@
 import math as m
 def solution(arr):
-    answer = 0
-    for i in range(len(arr)-1):
-        answer = (arr[i] * arr[i+1]) // m.gcd(arr[i], arr[i+1])
-        arr[i+1] = answer
-        print(answer)
-        print(arr)
+    answer = arr[0]
+    for i in arr:
+        answer = i * answer // m.gcd(i, answer)
     return answer
