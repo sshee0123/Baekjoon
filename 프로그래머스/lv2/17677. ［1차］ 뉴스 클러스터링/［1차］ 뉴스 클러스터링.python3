@@ -1,0 +1,30 @@
+from collections import Counter
+import math
+def solution(str1, str2):
+    answer = 0
+    # 모두 대문자로 통일
+    str1 = str1.upper()
+    str2 = str2.upper()
+    print(str1,str2)
+    
+    # 문자열로만 구성된 2글자 배열에 삽입
+    tmp1 = []
+    tmp2 = []
+    for s1 in range(len(str1)-1):
+        if str1[s1].isalpha() and str1[s1+1].isalpha():
+            tmp1.append(str1[s1]+str1[s1+1])
+    for s2 in range(len(str2)-1):
+        if str2[s2].isalpha() and str2[s2+1].isalpha():
+            tmp2.append(str2[s2]+str2[s2+1])
+
+    # Counter 객체
+    counter1 = Counter(tmp1)
+    counter2 = Counter(tmp2)
+    # 교집합과 합집합
+    interset_set = list((counter1 & counter2).elements())
+    union_set = list((counter1 | counter2).elements())
+    
+    if len(union_set) == 0:
+        return 65536
+    
+    return math.floor((len(interset_set) /len(union_set))*65536)
