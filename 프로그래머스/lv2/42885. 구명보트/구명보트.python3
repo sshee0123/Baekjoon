@@ -1,0 +1,18 @@
+from collections import deque
+def solution(people, limit):
+    answer = 0
+    people.sort()
+    q = deque(people)
+    print(q)
+    while q:
+        if len(q) == 1: # 혼자면 끝
+            answer += 1
+            break
+        elif q[0] + q[-1] <= limit: # 가장 작은 것, 큰 것을 제거하는게 효율적임
+            answer += 1
+            q.pop()
+            q.popleft()
+        else:
+            q.pop() # 무거운 사람 먼저 나가기
+            answer += 1
+    return answer
