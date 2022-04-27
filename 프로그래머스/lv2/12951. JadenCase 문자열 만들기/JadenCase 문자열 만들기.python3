@@ -1,0 +1,17 @@
+def solution(s):
+    answer = ''
+    s = s.split(" ") # 공백이 연속해서 나올 수 있다.
+    print(s)
+    for ss in s:
+        if ss == "":
+            answer += " "
+            continue
+        for i in range(len(ss)):
+            if i == 0:
+                a = ss[i].upper()
+                answer += a
+            else:
+                b = ss[i].lower()
+                answer += b
+        answer += " "
+    return answer[:-1]
