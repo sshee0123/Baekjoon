@@ -3,9 +3,10 @@ def solution(s):
     s = s.split(" ") # 공백이 연속해서 나올 수 있다.
     print(s)
     for ss in s:
-        if ss == "":
+        if ss == "": # 연속한 공백
             answer += " "
-            continue
+            continue # 다음 ss
+            
         for i in range(len(ss)):
             if i == 0:
                 a = ss[i].upper()
@@ -13,5 +14,6 @@ def solution(s):
             else:
                 b = ss[i].lower()
                 answer += b
-        answer += " "
-    return answer[:-1]
+        answer += " " # 기존 단어 사이 띄어쓰기
+        
+    return answer[:-1] # 마지막 단어 뒤에도 공백 있어서 제거하기
