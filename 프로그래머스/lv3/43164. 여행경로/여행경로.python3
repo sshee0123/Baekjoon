@@ -1,0 +1,21 @@
+from collections import defaultdict
+def solution(tickets):
+    answer = []
+    dic = defaultdict(list) # 유사 딕셔너리 생성
+    
+    for a,b in tickets:
+        dic[a].append(b)
+    for k in dic.keys():
+        dic[k].sort(reverse = True) # 위에 있는 걸 먼저 내보내야해서 reverse
+    print(dic)
+    
+    #dfs
+    stack = ['ICN']
+    while stack:
+        top = stack[-1]
+        if not dic[top]: # dic에 없으면 pop
+            answer.append(stack.pop())
+        else:
+            stack.append(dic[top].pop())
+            
+    return answer[::-1]
