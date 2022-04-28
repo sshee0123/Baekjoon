@@ -1,0 +1,20 @@
+def solution(msg):
+    answer = []
+    dic = dict()
+    for i in range(ord('A'), ord('Z')+1):
+        dic[chr(i)] = i - ord('A') + 1
+    start, end = 0, 1
+    print(dic)
+    idx = 27 # dic 처음의 다음 인덱스
+    
+    while end < len(msg)+1:
+        w = msg[start:end]
+        if w in dic:
+            end += 1
+        else:
+            answer.append(dic[w[:-1]])
+            dic[w] = idx # 인덱스 삽입
+            idx += 1
+            start = end -1   
+    answer.append(dic[w])
+    return answer
