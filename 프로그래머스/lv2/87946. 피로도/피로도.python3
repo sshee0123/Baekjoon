@@ -1,0 +1,15 @@
+from itertools import permutations
+def solution(k, dungeons):
+    answer = 0
+    max_len = len(dungeons)
+    
+    for dungeon in permutations(dungeons,max_len):
+        tmp = 0
+        tmp_k = k
+        for d1,d2 in dungeon:
+            if tmp_k >= d1:
+                tmp_k -= d2
+                tmp += 1
+        if tmp > answer:
+            answer = tmp
+    return answer
