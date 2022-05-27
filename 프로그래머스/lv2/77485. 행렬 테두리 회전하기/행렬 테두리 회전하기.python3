@@ -1,0 +1,40 @@
+def solution(rows, columns, queries):
+    answer = []
+    matrix = [[0 for c in range(columns + 1)] for r in range(rows + 1)]  # 초기화
+    # 아무 회전도 안했을 때
+    n = 1
+    for i in range(1, rows + 1):
+        for j in range(1, columns + 1):
+            matrix[i][j] = n
+            n += 1
+
+    for x1, y1, x2, y2 in queries:
+        tmp_min = matrix[x1][y1]
+        tmp_copy = tmp_min
+
+        # 회전
+        for k in range(x1, x2):  # 왼쪽
+            tmp = matrix[k+1][y1]
+            matrix[k][y1] = tmp
+            tmp_copy = min(tmp_copy, tmp)
+
+        for k in range(y1, y2):  # 아래
+            tmp = matrix[x2][k+1]
+            matrix[x2][k] = tmp
+            tmp_copy = min(tmp_copy, tmp)
+
+        for k in range(x2, x1, -1):  # 오른쪽
+            tmp = matrix[k-1][y2]
+            matrix[k][y2] = tmp
+            tmp_copy = min(tmp_copy, tmp)
+
+        for k in range(y2, y1, -1):  # 위
+            tmp = matrix[x1][k-1]
+            matrix[x1][k] = tmp
+            tmp_copy = min(tmp_copy, tmp)
+
+        # 회전 마치고 바ㅜ꾸기
+        matrix[x1][y1+1] = tmp_min
+        answer.append(tmp_copy)
+
+    return answer
