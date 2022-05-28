@@ -1,18 +1,18 @@
 def solution(name):
     answer = 0
+    # 최소 이동은 문자열 길이 -1
     move = len(name)-1
-    # for i in range(len(name)-1, -1, -1):
-    #     if name[i] == 'A':
-    #         move -= 1
-    #     else:
-    #         break
-            
+    
+    # 조이스틱 상하 이동으로 알파벳 최소 차이
     for i, alp in enumerate(name):
         answer += min(ord(alp)-ord('A'), ord('Z')-ord(alp)+1)
         
+        # 연속된 'A' 발견하면 넘어가기
         moving_idx = i + 1
         while moving_idx < len(name) and name[moving_idx] == 'A':
             moving_idx += 1
+            
+        # 현재 최소 이동과 조이스틱 좌로 움직이거나 우로 움직이는 것 간의 최소 이동 횟수 구하기
         move = min([move, i*2 + (len(name)-moving_idx), i + 2*(len(name)-moving_idx)])
         
     answer += move
