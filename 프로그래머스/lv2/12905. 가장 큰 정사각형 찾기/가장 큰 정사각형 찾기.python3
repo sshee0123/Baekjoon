@@ -8,8 +8,8 @@ def solution(board):
             if board[r][c] == 1:
                 board[r][c] = min(board[r][c-1], board[r-1][c], board[r-1][c-1])+1
                 answer = max(answer, board[r][c])
-    for r in range(row):
-        tmp = max(board[r])
-        answer = max(tmp, answer)
+    for b in board:
+        if max(b) > answer:
+            answer = max(b)
         
     return answer**2
