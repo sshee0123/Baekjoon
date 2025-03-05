@@ -1,12 +1,6 @@
 def solution(n, control):
-    answer = 0
+    answer = n
+    mydic = {"w":1, "s":-1, "d":10, "a":-10}
     for c in control:
-        if c == "w":
-            n = n+1
-        elif c == "s":
-            n = n-1
-        elif c == "d":
-            n = n + 10
-        elif c == "a":
-            n = n-10
-    return n
+        answer += mydic[c]
+    return answer
