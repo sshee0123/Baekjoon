@@ -1,25 +1,18 @@
 def solution(a, b, c, d):
     answer = 0
-    org = [a,b,c,d] # 원본 복사
-    tmp = list(set([a,b,c,d])) # set to list
-    n = len(tmp)
-    if n == 1:
-        answer = 1111*tmp[0]
-    elif n == 2:
-        for t in tmp:
-            cnt = org.count(t)
-            if cnt == 2: # 주사위가 두개씩 같은 값이 나온 경우
-                answer = (tmp[0]+tmp[1])*abs(tmp[0]-tmp[1])
-            elif cnt > 2: 
-                cnt3 = [x for x in org if org.count(x)==3] # 세 주사위에서 나온 숫자
-                cnt1 = [x for x in org if org.count(x)==1] # 나머지 다른 주사위에서 나온 숫자
-                answer = (10*cnt3[0]+cnt1[0])**2
-    elif n == 3:
-        for t in tmp:
-            cnt = org.count(t)
-            if cnt == 2: 
-                tmp1 = [x for x in org if x!=t] # 두 주사위에서 나온 숫자가 같은 경우 제외
-                answer = tmp1[0]*tmp1[1]
-    elif n == 4:
+    tmp = [a,b,c,d]
+    c = [tmp.count(x) for x in tmp]
+    print(c)
+    if max(c) == 4:
+        answer = 1111*a
+    elif max(c) == 3:
+        answer = (10*tmp[c.index(3)]+tmp[c.index(1)])**2
+    elif max(c) == 2:
+        if min(c) == 1: # 두 주사위는 같고 나머지 두 주사위 각각 다른경우
+            answer = eval('*'.join([str(tmp[i]) for i,x in enumerate(c) if x == 1]))
+        else:
+            tmp1 = list(set(tmp))
+            answer = (tmp1[0]+tmp1[1])*abs(tmp1[0]-tmp1[1])
+    elif max(c) == 1:
         answer = min(tmp)
     return answer
