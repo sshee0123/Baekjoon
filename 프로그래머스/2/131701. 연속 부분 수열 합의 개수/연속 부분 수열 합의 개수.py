@@ -1,9 +1,8 @@
-from collections import deque
 def solution(elements):
     answer = set()
-    q = deque(elements)
-    for i in range(len(q)):
-        q.rotate(1)
-        for j in range(1,len(q)):
-            answer.add(sum(list(q)[:j]))
-    return len(answer)+1
+    n = len(elements)
+    el = elements *2
+    for i in range(n):
+        for j in range(n):
+            answer.add(sum(el[j:j+i+1]))
+    return len(answer)
