@@ -1,24 +1,15 @@
-def find(x):
-    if parent[x] != x:
-        parent[x] = find(parent[x])
-    return parent[x]
-def union(x,y):
-    x = find(x)
-    y = find(y)
-    if x<y:
-        parent[y] = x
-    else:
-        parent[x] = y
+def dfs(graph,v,visited):
+    visited[v] = True
+    for i in range(len(graph)):
+        if graph[v][i] == 1:
+            if not visited[i]:
+                dfs(graph,i,visited)
+            
 def solution(n, computers):
-    global parent
-    parent = [i for i in range(n)]
+    answer = 0
+    visited = [False]*n
     for i in range(n):
-        for j in range(n):
-            if computers[i][j] == 1:
-                union(i,j)
-                print(parent)
-    answer = set()
-    for i in range(n):
-        v = find(parent[i])
-        answer.add(v)
-    return len(answer)
+        if not visited[i]:
+            dfs(computers,i,visited)
+            answer += 1
+    return answer
