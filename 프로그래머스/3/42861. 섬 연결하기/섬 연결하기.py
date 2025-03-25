@@ -1,23 +1,23 @@
-def find(x):
-    if parent[x] != x:
-        parent[x] = find(parent[x])
-    return parent[x]
-
-def union(x,y):
-    x = find(x)
-    y = find(y)
-    if x<y:
-        parent[y] = x
-    else:
-        parent[x] = y
-        
+import heapq as hq
 def solution(n, costs):
     answer = 0
-    costs = sorted(costs,key=lambda x: x[2])
-    global parent
-    parent = [i for i in range(n)]
+    
+    graph = [[] for _ in range(n)]
     for a,b,w in costs:
-        if find(a)!=find(b):
+        graph[a].append([w,b])
+        graph[b].append([w,a])
+    visited = [False]*n
+    
+    # 우선순위큐
+    h = []
+    hq.heappush(h,[0,0])
+    cnt = 0
+    while h and cnt<n: # 간선-1 만큼
+        w,v = hq.heappop(h)
+        if not visited[v]:
+            visited[v] = True
             answer += w
-            union(a,b)
+            cnt += 1
+            for i in graph[v]:
+                hq.heappush(h,i)
     return answer
